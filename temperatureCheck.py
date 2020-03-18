@@ -4,7 +4,7 @@ from settings import PUSHBULLETTOKEN, TEMPERATURE_LIMITS, WATER_SENSOR_ID
 
 
 def getTemperatureInCelsius():
-    sensor = W1ThermSensor(W1ThermSensor.THERM_SENSOR_DS18S20, WATER_SENSOR_ID)
+    sensor = W1ThermSensor(W1ThermSensor.THERM_SENSOR_DS18B20, WATER_SENSOR_ID)
     return sensor.get_temperature(W1ThermSensor.DEGREES_C)
 
 
