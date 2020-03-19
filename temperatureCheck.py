@@ -9,7 +9,7 @@ def getTemperatureInCelsius(id):
 
 
 def pushNotification(waterTemperature, ambientTemperature, title="no title"):
-    message = "Wassertemp. liegt bei: " + str(waterTemperature) + "°C. Raumtemperatur bei " + ambientTemperature + "°C"
+    message = "Wassertemp. liegt bei: " + str(waterTemperature) + "°C. Raumtemperatur bei " + str(ambientTemperature) + "°C"
     pb = PushBullet(PUSHBULLETTOKEN)
     pb.push_note(title, message)
 
