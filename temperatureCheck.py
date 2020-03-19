@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from w1thermsensor import W1ThermSensor
 from pushbullet import PushBullet
 from settings import PUSHBULLETTOKEN, TEMPERATURE_LIMITS, WATER_SENSOR_ID, AMBIETEN_SENSOR_ID
