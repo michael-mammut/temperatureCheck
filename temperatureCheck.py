@@ -17,7 +17,7 @@ ambientTemperature = getTemperatureInCelsius(AMBIETEN_SENSOR_ID)
 temperature = getTemperatureInCelsius(WATER_SENSOR_ID)
 
 if temperature < TEMPERATURE_LIMITS["SETPOINT"]:
-    pushNotification(temperature,ambientTemperature, "ACHTUNG! GERINGE TEMPERATUR")
+    pushNotification(temperature, ambientTemperature, "ACHTUNG! GERINGE TEMPERATUR")
 elif TEMPERATURE_LIMITS["WARNING"] <= temperature < TEMPERATURE_LIMITS["ALERT"]:
     pushNotification(temperature,ambientTemperature, "ACHTUNG! WARME TEMPERATUR")
 elif temperature >= TEMPERATURE_LIMITS["ALERT"]:
