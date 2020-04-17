@@ -1,0 +1,2 @@
+#!/usr/bin/env python3
+PUSHBULLETTOKEN = "<YOUR_PUSHBULLET_TOKEN>"
