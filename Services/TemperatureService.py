@@ -3,7 +3,7 @@
 from Entities.TemperatureMeasure import MeasureResult, TemperatureMeasure
 
 
-class TemperatureRepository:
+class TemperatureService:
 
     def __init__(self, temperatureMeasure):
 

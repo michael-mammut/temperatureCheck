@@ -6,7 +6,7 @@ from Settings.Constants import NOTIFICATIONTYPE
 from Settings.temperature_settings import TEMPERATURE_LIMITS
 
 
-class TestPushBulletNotification(TestCase):
+class TestNotificationService(TestCase):
 
     def setUp(self):
         self.__AMBIENT = 30
