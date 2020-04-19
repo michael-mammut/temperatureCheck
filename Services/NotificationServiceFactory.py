@@ -2,8 +2,8 @@
 from pushbullet import PushBullet
 
 from Entities.TemperatureMeasure import MeasureResult
-from Settings.Constants import NOTIFICATIONTYPE
-from Settings.settings import PUSHBULLETTOKEN
+from Settings.constants import NOTIFICATIONTYPE
+from Settings.tokens import PUSHBULLETTOKEN
 from Settings.temperature_settings import TEMPERATURE_LIMITS
 
 

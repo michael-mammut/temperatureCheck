@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from Entities.TemperatureMeasure import MeasureResult
 from Services.NotificationServiceFactory import MobileNotificationService, NotificationServiceFactory
-from Settings.Constants import NOTIFICATIONTYPE
+from Settings.constants import NOTIFICATIONTYPE
 from Settings.temperature_settings import TEMPERATURE_LIMITS
 
 
