@@ -8,11 +8,11 @@ from Settings.temperature_settings import TEMPERATURE_LIMITS
 
 
 class NotificationServiceFactory:
-    def __init__(self, type, measure_result, title='Notification title'):
-        if type is None or not isinstance(measure_result,
-                                          MeasureResult) or measure_result.value is None or measure_result.ambient is None:
+    def __init__(self, notification_type, measure_result, title='Notification title'):
+        if notification_type is None or not isinstance(measure_result,
+                                                       MeasureResult) or measure_result.value is None or measure_result.ambient is None:
             raise TypeError('None is not allowed')
-        self._type = type
+        self._type = notification_type
         self._measureResult = measure_result
         self._title = self._get_notification_title()
         self._message = "Wassertemp. liegt bei: " + str(self._measureResult.value) + "°C. Raumtemperatur bei " + str(

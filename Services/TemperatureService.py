@@ -13,7 +13,7 @@ class TemperatureService:
             raise TypeError('Wrong type is given')
 
 
-    def get_temperature_in_celsius(self):
+    def get_temperature_in_celsius(self) -> MeasureResult:
         water = self._get_temperature_in_celsius_by_sensor(self._temperatureMeasure.sensor_id)
         reference_sensor = self._get_temperature_in_celsius_by_sensor(self._temperatureMeasure.reference_sensor_id)
         return MeasureResult(water, reference_sensor)

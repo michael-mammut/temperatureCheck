@@ -9,13 +9,13 @@ from Entities.TemperatureMeasure import MeasureResult
 
 class test_TemperatureMeasure(TestCase):
     def test_name(self):
-        t = TemperatureMeasure(name="TestMedium", sensor_id="-2", sensor_label="Water", reference_sensor_id="-3",
+        t = TemperatureMeasure(measurement_name="TestMedium", sensor_id="-2", sensor_label="Water", reference_sensor_id="-3",
                                reference_label="Ambient")
         self.assertEqual("TestMedium", t.name)
         self.assertEqual("-2", t.sensor_id)
 
     def test_fail_name(self):
-        t = TemperatureMeasure(name="TestMedium", sensor_id="-2B", sensor_label="Water-B", reference_sensor_id="-3B",
+        t = TemperatureMeasure(measurement_name="TestMedium", sensor_id="-2B", sensor_label="Water-B", reference_sensor_id="-3B",
                                reference_label="AmbientB")
         self.assertNotEqual("FAIL", t.name)
         self.assertEqual("-2B", t.sensor_id)

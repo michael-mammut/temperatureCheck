@@ -5,8 +5,8 @@ from datetime import datetime
 
 class TemperatureMeasure:
 
-    def __init__(self, name, sensor_id, sensor_label, reference_sensor_id, reference_label):
-        self.__name = name
+    def __init__(self, measurement_name, sensor_id, sensor_label, reference_sensor_id, reference_label = 'Ambient'):
+        self.__name = measurement_name
         self.__sensor_id = sensor_id
         self.__sensor_label = sensor_label
         self.__reference_sensor_id = reference_sensor_id
