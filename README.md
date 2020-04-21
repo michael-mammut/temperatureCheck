@@ -19,6 +19,6 @@ v1.0.0
 * Add your Sensor-IDs in `SETTINGS.temperature_settings.py`
 * Adjust the temperature limits in `SETTINGS.temperature_settings.py`
 
-####This is just a little project to fool around and spend time to escape the world and improve my skills in python.
+#### This is just a little project to fool around and spend time to escape the world and improve my skills in Python.
 
-#So there is no warranty!!!
+#### No warranty will be given regarding function or damage. Because it is just a project to improve software skills!!!
