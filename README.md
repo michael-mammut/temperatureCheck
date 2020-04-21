@@ -14,6 +14,11 @@ v1.0.0
 * w1thermsensor (https://github.com/timofurrer/w1thermsensor)
 * pushbullet (https://pypi.org/project/pushbullet.py/0.9.1/)
 
+### Configuration
+* Add your Token of Pushbullen in `SETTINGS.tokens.py`
+* Add your Sensor-IDs in `SETTINGS.temperature_settings.py`
+* Adjust the temperature limits in `SETTINGS.temperature_settings.py`
+
 ####This is just a little project to fool around and spend time to escape the world and improve my skills in python.
 
 #So there is no warranty!!!
