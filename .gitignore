@@ -1,1 +1,3 @@
 /DemoFolder/
+/__pycache__
+*.log
