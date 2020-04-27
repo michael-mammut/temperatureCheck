@@ -3,19 +3,19 @@
 import csv
 import logging
 import os
-from pathlib import Path
 
 from Repository.DataRepositoryAbstract import DataRepositoryAbstract
+from Settings.datastore import LOGFILE_WITH_PATH
 
 
 class DataRepository(DataRepositoryAbstract):
     def __init__(self, filename):
         super().__init__()
-        self._filename = Path.home().joinpath(filename).__str__()
+        self._filename = filename
         self._fields = ['value', 'ambient', 'created_at']
 
         logging.basicConfig(format='Date-Time : %(asctime)s : Line No. : %(lineno)d - %(message)s',
-                            level=logging.DEBUG, filename= Path.home().joinpath('DataRepository.log').__str__())
+                            level=logging.DEBUG, filename= LOGFILE_WITH_PATH)
 
     def add(self, result):
         try:
