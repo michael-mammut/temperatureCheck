@@ -15,7 +15,7 @@ class DataRepository(DataRepositoryAbstract):
         self._fields = ['value', 'ambient', 'created_at']
 
         logging.basicConfig(format='Date-Time : %(asctime)s : Line No. : %(lineno)d - %(message)s',
-                            level=logging.DEBUG, filename= LOGFILE_WITH_PATH)
+                            level=logging.ERROR, filename=LOGFILE_WITH_PATH)
 
     def add(self, result):
         try:
