@@ -3,6 +3,7 @@
 import csv
 import logging
 import os
+from pathlib import Path
 
 from Repository.DataRepositoryAbstract import DataRepositoryAbstract
 
@@ -10,7 +11,7 @@ from Repository.DataRepositoryAbstract import DataRepositoryAbstract
 class DataRepository(DataRepositoryAbstract):
     def __init__(self, filename):
         super().__init__()
-        self._filename = filename
+        self._filename = Path(os.getcwd()).joinpath('Data').joinpath(filename).__str__()
         self._fields = ['value', 'ambient', 'created_at']
 
         logging.basicConfig(format='Date-Time : %(asctime)s : Line No. : %(lineno)d - %(message)s',

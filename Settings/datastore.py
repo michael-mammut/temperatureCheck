@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-TEMPERATURE_DATA_FILE = "<absolute path to your csv-file>"
+TEMPERATURE_DATA_FILE = "temperature.csv"
 
 ####### TEST FILES
 
-TEST_TEMPERATURE_DATA_FILE = "<absolute path to your test csv-file>"
+TEST_TEMPERATURE_DATA_FILE = "temperature_test.csv"
