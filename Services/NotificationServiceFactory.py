@@ -8,7 +8,7 @@ from Settings.temperature_settings import TEMPERATURE_LIMITS
 
 
 class NotificationServiceFactory:
-    def __init__(self, notification_type, measure_result, title='Notification title'):
+    def __init__(self, notification_type, measure_result):
         if notification_type is None or not isinstance(measure_result,
                                                        MeasureResult) or measure_result.value is None or measure_result.ambient is None:
             raise TypeError('None is not allowed')
@@ -20,7 +20,7 @@ class NotificationServiceFactory:
 
     def get_notification_service(self):
         if self._type is NOTIFICATIONTYPE.get('MOBILE'):
-            return MobileNotificationService(self._measureResult, self._title)
+            return MobileNotificationService(self._measureResult)
 
         raise TypeError('Notificationtype does not exists')
 
@@ -45,8 +45,8 @@ class NotificationServiceFactory:
 
 class MobileNotificationService(NotificationServiceFactory):
 
-    def __init__(self, measure_result, title='Pushbullet Title'):
-        super().__init__(NOTIFICATIONTYPE.get('MOBILE'), measure_result, title)
+    def __init__(self, measure_result):
+        super().__init__(NOTIFICATIONTYPE.get('MOBILE'), measure_result)
 
     def notify(self):
         pb = PushBullet(PUSHBULLETTOKEN)

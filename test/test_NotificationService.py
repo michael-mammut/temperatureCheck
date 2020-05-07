@@ -13,12 +13,9 @@ class TestNotificationService(TestCase):
         self.__measureResult = MeasureResult(10, self.__AMBIENT)
         self.__typeMobile = NOTIFICATIONTYPE.get('MOBILE')
 
-    def test_init(self):
-        with self.assertRaisesRegex(TypeError, 'None is not allowed') as cm:
-            nr = MobileNotificationService(None, None)
 
     def test_get_message(self):
-        nr = MobileNotificationService(self.__measureResult, 'Test Title')
+        nr = MobileNotificationService(self.__measureResult)
         self.assertEqual("Wassertemp. liegt bei: 10°C. Raumtemperatur bei 30°C", nr.get_message())
 
     def test_get_notification_by_type(self):
@@ -27,9 +24,9 @@ class TestNotificationService(TestCase):
                               MobileNotificationService)
 
     def test_get_notification_by_type_fail(self):
-        type = -1
+        dummy_type = -1
         with self.assertRaisesRegex(TypeError, 'Notificationtype does not exists'):
-            NotificationServiceFactory(type, self.__measureResult).get_notification_service()
+            NotificationServiceFactory(dummy_type, self.__measureResult).get_notification_service()
 
     def test_title_by_temperature_information(self):
         rm = MeasureResult(TEMPERATURE_LIMITS.get('SETPOINT'), self.__AMBIENT)

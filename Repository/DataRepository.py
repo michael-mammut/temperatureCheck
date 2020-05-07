@@ -29,11 +29,11 @@ class DataRepository(DataRepositoryAbstract):
 
             dw.writerow(result.__dict__)
             f.close()
-        except:
+        except OSError:
             logging.error("Writing into the CSV " + self._filename)
 
-    def read(self, numberOfMeasurements=10):
-        return self.__file_read_from_tail(self._filename, numberOfMeasurements)
+    def read(self, number_of_measurements=10):
+        return self.__file_read_from_tail(self._filename, number_of_measurements)
 
     # Source code copied and partitial modified
     # src: https://www.w3resource.com/python-exercises/file/python-io-exercise-4.php
@@ -42,19 +42,19 @@ class DataRepository(DataRepositoryAbstract):
             line_list = []
             bufsize = 8192
             fsize = os.stat(fname).st_size
-            iter = 0
+            item = 0
             with open(fname) as f:
                 if bufsize > fsize:
                     bufsize = fsize - 1
                     data = []
                     while True:
-                        iter += 1
-                        f.seek(fsize - bufsize * iter)
+                        item += 1
+                        f.seek(fsize - bufsize * item)
                         data.extend(f.readlines())
                         if len(data) >= lines or f.tell() == 0:
                             line_list.extend(data[-lines:])
                             break
 
             return line_list
-        except:
+        except OSError:
             logging.error("Reading from CSV " + self._filename)

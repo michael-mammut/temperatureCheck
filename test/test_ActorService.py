@@ -13,37 +13,37 @@ class TestActorService(TestCase):
         self._actor = Actor(7, _on, _off)
 
     def test_set_actor_from_off_on(self) -> None:
-        with mock.patch.object(ActorOffStateService, '_turnActorOn', return_value=True):
+        with mock.patch.object(ActorOffStateService, '_turn_actor_on', return_value=True):
             service = ActorOffStateService(self._actor)
             service = service.handle()
             self.assertIsInstance(service, ActorOnStateService)
 
     def test_set_actor_from_off_to_off(self) -> None:
-        with mock.patch.object(ActorOffStateService, '_turnActorOn', return_value=False):
+        with mock.patch.object(ActorOffStateService, '_turn_actor_on', return_value=False):
             service = ActorOffStateService(self._actor)
             service = service.handle()
             self.assertIsInstance(service, ActorOffStateService)
 
     def test_set_actor_from_on_to_off(self) -> None:
-        with mock.patch.object(ActorOnStateService, '_turnActorOn', return_value=False):
+        with mock.patch.object(ActorOnStateService, '_turn_actor_on', return_value=False):
             service = ActorOnStateService(self._actor)
             service = service.handle()
             self.assertIsInstance(service, ActorOffStateService)
 
     def test_set_actor_from_on_to_on(self) -> None:
-        with mock.patch.object(ActorOnStateService, '_turnActorOn', return_value=True):
+        with mock.patch.object(ActorOnStateService, '_turn_actor_on', return_value=True):
             service = ActorOnStateService(self._actor)
             service = service.handle()
             self.assertIsInstance(service, ActorOnStateService)
 
     def test_set_actor_some_changes(self) -> None:
-        with mock.patch.object(ActorOffStateService, '_turnActorOn', return_value=False):
+        with mock.patch.object(ActorOffStateService, '_turn_actor_on', return_value=False):
             service = ActorOffStateService(self._actor)
             service = service.handle()
             self.assertIsInstance(service, ActorOffStateService)
-        with mock.patch.object(ActorOffStateService, '_turnActorOn', return_value=True):
+        with mock.patch.object(ActorOffStateService, '_turn_actor_on', return_value=True):
             service = service.handle()
             self.assertIsInstance(service, ActorOnStateService)
-        with mock.patch.object(ActorOffStateService, '_turnActorOn', return_value=False):
+        with mock.patch.object(ActorOffStateService, '_turn_actor_on', return_value=False):
             service = service.handle()
             self.assertIsInstance(service, ActorOffStateService)

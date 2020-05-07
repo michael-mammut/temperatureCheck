@@ -24,6 +24,6 @@ class test_TemperatureMeasure(TestCase):
     def test_MeasureResult_with_params(self):
         mock_created_at = datetime.now()
 
-        with mock.patch.object(MeasureResult, 'get_now', return_value=mock_created_at) as mock_masure_result:
+        with mock.patch.object(MeasureResult, 'get_now', return_value=mock_created_at):
             r = MeasureResult(21, 10)
             self.assertDictEqual({"value": 21, "ambient": 10, "created_at": mock_created_at}, r.__dict__)

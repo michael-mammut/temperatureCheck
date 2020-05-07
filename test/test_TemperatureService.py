@@ -15,7 +15,7 @@ class TestTemperatureService(TestCase):
 
     def test_get_temperature_in_celsius(self):
         with mock.patch.object(TemperatureService, '_get_temperature_in_celsius_by_sensor',
-                               return_value=-273) as mock_masure_result:
+                               return_value=-273) :
             temperatureMeasure = TemperatureMeasure(measurement_name="TestMedium", sensor_id="-2B", sensor_label="Water-B",
                                                     reference_sensor_id="-3B", reference_label="AmbientB")
 

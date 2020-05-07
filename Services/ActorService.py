@@ -20,7 +20,7 @@ class AbstActor(ABC):
         GPIO.setup(self._actor.gpio, state)
         GPIO.cleanup()
 
-    def _turnActorOn(self):
+    def _turn_actor_on(self):
         now = datetime.now()
         return self._actor.on.hour >= now.hour and self._actor.on.minute >= now.minute
 
@@ -31,12 +31,11 @@ class ActorOnStateService(AbstActor):
         super().__init__(actor)
 
     def handle(self):
-        if self._turnActorOn():
+        if self._turn_actor_on():
             self._set_actor_state(GPIO.HIGH)
             return self
         else:
             return ActorOffStateService(self._actor)
-
 
 
 class ActorOffStateService(AbstActor):
@@ -45,7 +44,7 @@ class ActorOffStateService(AbstActor):
         super().__init__(actor)
 
     def handle(self):
-        if not self._turnActorOn():
+        if not self._turn_actor_on():
             self._set_actor_state(GPIO.LOW)
             return self
         else:

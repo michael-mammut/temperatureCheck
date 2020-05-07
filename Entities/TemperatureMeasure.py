@@ -22,9 +22,6 @@ class TemperatureMeasure:
     def sensor_id(self):
         return self.__sensor_id
 
-    @property
-    def value(self):
-        return self.__value
 
     @property
     def reference_sensor_id(self):

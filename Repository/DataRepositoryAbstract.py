@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import logging
 from abc import abstractmethod, ABC
 
 
@@ -10,5 +9,5 @@ class DataRepositoryAbstract(ABC):
         pass
 
     @abstractmethod
-    def read(self, numberOfDays = 10):
+    def read(self, number_of_days=10):
         pass
