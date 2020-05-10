@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from pushbullet import PushBullet
 
-from Entities.TemperatureMeasure import MeasureResult
+from Entities.MeasureResult import MeasureResult
 from Settings.constants import NOTIFICATIONTYPE
 from Settings.tokens import PUSHBULLETTOKEN
 from Settings.temperature_settings import TEMPERATURE_LIMITS

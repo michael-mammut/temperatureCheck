@@ -8,7 +8,7 @@ from Repository.DataRepositoryAbstract import DataRepositoryAbstract
 from Settings.datastore import LOGFILE_WITH_PATH
 
 
-class DataRepository(DataRepositoryAbstract):
+class CsvDataRepository(DataRepositoryAbstract):
     def __init__(self, filename):
         super().__init__()
         self._filename = filename

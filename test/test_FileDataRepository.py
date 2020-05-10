@@ -3,8 +3,8 @@ import csv
 import os
 from unittest import TestCase
 
-from Entities.TemperatureMeasure import MeasureResult
-from Repository.DataRepository import DataRepository
+from Entities.MeasureResult import MeasureResult
+from Repository.CsvDataRepository import CsvDataRepository
 
 
 class test_FileDataRepository(TestCase):
@@ -22,7 +22,7 @@ class test_FileDataRepository(TestCase):
         pass
 
     def test_createEntry(self):
-        repo = DataRepository(self.TESTFILE)
+        repo = CsvDataRepository(self.TESTFILE)
         repo.add(MeasureResult(25, 20))
         repo.add(MeasureResult(35, 30))
 
@@ -39,7 +39,7 @@ class test_FileDataRepository(TestCase):
         dw.writerow({'value': 2, 'ambient': 4, 'created_at': '2020-04-14 21:17:56.047276'})
         f.close()
 
-        repo = DataRepository(self.TESTFILE)
+        repo = CsvDataRepository(self.TESTFILE)
         lines = repo.read(1)
         self.assertEqual(1, len(lines))
 
@@ -52,6 +52,6 @@ class test_FileDataRepository(TestCase):
         dw.writerow({'value': 4, 'ambient': 6, 'created_at': '2020-04-14 21:17:56.047276'})
         f.close()
 
-        repo = DataRepository(self.TESTFILE)
+        repo = CsvDataRepository(self.TESTFILE)
         lines = repo.read(2)
         self.assertEqual(2, len(lines))

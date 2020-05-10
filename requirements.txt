@@ -10,3 +10,5 @@ surrogate==0.1
 urllib3==1.25.8
 w1thermsensor==1.3.0
 websocket-client==0.57.0
+
+freezegun~=0.3.15

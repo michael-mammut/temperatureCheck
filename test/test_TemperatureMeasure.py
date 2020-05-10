@@ -3,20 +3,20 @@
 from datetime import datetime
 from unittest import TestCase, mock
 
-from Entities.TemperatureMeasure import TemperatureMeasure
-from Entities.TemperatureMeasure import MeasureResult
+from Entities.TemperatureSensor import TemperatureSensor
+from Entities.MeasureResult import MeasureResult
 
 
 class test_TemperatureMeasure(TestCase):
     def test_name(self):
-        t = TemperatureMeasure(measurement_name="TestMedium", sensor_id="-2", sensor_label="Water", reference_sensor_id="-3",
-                               reference_label="Ambient")
+        t = TemperatureSensor(measurement_name="TestMedium", sensor_id="-2", sensor_label="Water", reference_sensor_id="-3",
+                              reference_label="Ambient")
         self.assertEqual("TestMedium", t.name)
         self.assertEqual("-2", t.sensor_id)
 
     def test_fail_name(self):
-        t = TemperatureMeasure(measurement_name="TestMedium", sensor_id="-2B", sensor_label="Water-B", reference_sensor_id="-3B",
-                               reference_label="AmbientB")
+        t = TemperatureSensor(measurement_name="TestMedium", sensor_id="-2B", sensor_label="Water-B", reference_sensor_id="-3B",
+                              reference_label="AmbientB")
         self.assertNotEqual("FAIL", t.name)
         self.assertEqual("-2B", t.sensor_id)
 
