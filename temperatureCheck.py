@@ -3,14 +3,13 @@
 import Entities.TemperatureSensor
 from Repository.CsvDataRepository import CsvDataRepository
 from Services.NotificationServiceFactory import NotificationServiceFactory
-from Services.TemperatureService import TemperatureService
 from Settings.constants import NOTIFICATIONTYPE
 from Settings.temperature_settings import WATER_SENSOR_ID, AMBIETEN_SENSOR_ID
 from Settings.datastore import TEMPERATURE_DATA_FILE
+from Entities.TemperatureSensor import TemperatureSensor
 
-temperatureService = TemperatureService(Entities.TemperatureSensor.TemperatureSensor(measurement_name='Aquarium', sensor_id=WATER_SENSOR_ID,
-                                                                                     sensor_label='Wassertemperatur', reference_sensor_id=AMBIETEN_SENSOR_ID))
-measurer_result = temperatureService.get_temperature_in_celsius()
+temperatureSensor = TemperatureSensor('Aquarium', WATER_SENSOR_ID, 'Wassertemperatur', AMBIETEN_SENSOR_ID)
+measurer_result = temperatureSensor.get_temperature_in_celsius()
 
 data_repo = CsvDataRepository(TEMPERATURE_DATA_FILE)
 data_repo.add(measurer_result)
