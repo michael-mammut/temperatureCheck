@@ -9,10 +9,10 @@ from Settings.datastore import LOGFILE_WITH_PATH
 
 
 class CsvDataRepository(DataRepositoryAbstract):
-    def __init__(self, filename):
+    def __init__(self, filename, fields):
         super().__init__()
         self._filename = filename
-        self._fields = ['value', 'ambient', 'created_at']
+        self._fields = fields
 
         logging.basicConfig(format='Date-Time : %(asctime)s : Line No. : %(lineno)d - %(message)s',
                             level=logging.ERROR, filename=LOGFILE_WITH_PATH)

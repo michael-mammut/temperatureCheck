@@ -1,5 +1,5 @@
 from datetime import datetime
-from unittest import TestCase, mock
+from unittest import TestCase
 
 from freezegun import freeze_time
 

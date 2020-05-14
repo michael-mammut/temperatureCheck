@@ -11,6 +11,7 @@ class test_FileDataRepository(TestCase):
 
     def setUp(self):
         self.TESTFILE = 'test_file.csv'
+        self.TESTFILECOLUMNS=['value', 'ambient', 'created_at']
         self.removeTestFiles()
 
     def tearDown(self):
@@ -22,7 +23,7 @@ class test_FileDataRepository(TestCase):
         pass
 
     def test_createEntry(self):
-        repo = CsvDataRepository(self.TESTFILE)
+        repo = CsvDataRepository(self.TESTFILE, self.TESTFILECOLUMNS)
         repo.add(MeasureResult(25, 20))
         repo.add(MeasureResult(35, 30))
 
@@ -34,24 +35,22 @@ class test_FileDataRepository(TestCase):
 
     def test_readEntriesWithOneLine(self):
         f = open(self.TESTFILE, "a", newline="")
-        fields = ['value', 'ambient', 'created_at']
-        dw = csv.DictWriter(f=f, fieldnames=fields, dialect="excel")
+        dw = csv.DictWriter(f=f, fieldnames=self.TESTFILECOLUMNS, dialect="excel")
         dw.writerow({'value': 2, 'ambient': 4, 'created_at': '2020-04-14 21:17:56.047276'})
         f.close()
 
-        repo = CsvDataRepository(self.TESTFILE)
+        repo = CsvDataRepository(self.TESTFILE, self.TESTFILECOLUMNS)
         lines = repo.read(1)
         self.assertEqual(1, len(lines))
 
     def test_readEntriesWithThreeLine(self):
         f = open(self.TESTFILE, mode='a', newline='')
-        fields = ['value', 'ambient', 'created_at']
-        dw = csv.DictWriter(f=f, fieldnames=fields, dialect="excel")
+        dw = csv.DictWriter(f=f, fieldnames=self.TESTFILECOLUMNS, dialect="excel")
         dw.writerow({'value': 2, 'ambient': 4, 'created_at': '2020-04-14 21:17:56.047276'})
         dw.writerow({'value': 3, 'ambient': 5, 'created_at': '2020-04-14 21:17:56.047276'})
         dw.writerow({'value': 4, 'ambient': 6, 'created_at': '2020-04-14 21:17:56.047276'})
         f.close()
 
-        repo = CsvDataRepository(self.TESTFILE)
+        repo = CsvDataRepository(self.TESTFILE, self.TESTFILECOLUMNS)
         lines = repo.read(2)
         self.assertEqual(2, len(lines))
