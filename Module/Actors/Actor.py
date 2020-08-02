@@ -18,14 +18,15 @@ class Actor:
 
     def set_actor_on(self):
         if self.is_time_to_turn_on():
-            self._set_actor_state(GPIO.HIGH)
+            self._set_actor_state(GPIO.LOW)
             return True
         else:
-            self._set_actor_state(GPIO.LOW)
+            self._set_actor_state(GPIO.HIGH)
             return False
 
     def _set_actor_state(self, state):
         GPIO.setmode(GPIO.BOARD)
         GPIO.setup(self.gpio, GPIO.OUT)
         GPIO.setup(self.gpio, state)
-        GPIO.cleanup()
+
+
