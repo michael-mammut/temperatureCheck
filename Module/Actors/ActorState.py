@@ -12,7 +12,7 @@ class AbstActor(ABC):
         pass
 
 
-class ActorOnStateService(AbstActor):
+class ActorOnState(AbstActor):
 
     def __init__(self, actor):
         super().__init__(actor)
@@ -21,10 +21,10 @@ class ActorOnStateService(AbstActor):
         if self._actor.set_actor_on():
             return self
         else:
-            return ActorOffStateService(self._actor)
+            return ActorOffState(self._actor)
 
 
-class ActorOffStateService(AbstActor):
+class ActorOffState(AbstActor):
 
     def __init__(self, actor):
         super().__init__(actor)
@@ -33,4 +33,4 @@ class ActorOffStateService(AbstActor):
         if not self._actor.set_actor_on():
             return self
         else:
-            return ActorOnStateService(self._actor)
+            return ActorOnState(self._actor)

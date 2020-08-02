@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 from pushbullet import PushBullet
 
-from Entities.MeasureResult import MeasureResult
+from Module.Temperature.MeasureResult import MeasureResult
 from Settings.constants import NOTIFICATIONTYPE
 from Settings.tokens import PUSHBULLETTOKEN
-from Settings.temperature_settings import TEMPERATURE_LIMITS
+from Module.Temperature.temperature_settings import TEMPERATURE_LIMITS
 
 
-class NotificationServiceFactory:
+class NotificationService:
     def __init__(self, notification_type, measure_result):
         if notification_type is None or not isinstance(measure_result,
                                                        MeasureResult) or measure_result.value is None or measure_result.ambient is None:
@@ -43,7 +43,7 @@ class NotificationServiceFactory:
     def notify(self):
         pass
 
-class MobileNotificationService(NotificationServiceFactory):
+class MobileNotificationService(NotificationService):
 
     def __init__(self, measure_result):
         super().__init__(NOTIFICATIONTYPE.get('MOBILE'), measure_result)

@@ -14,8 +14,7 @@ class Actor:
         now = datetime.now().time()
         on = self.on.time()
         off = self.off.time()
-        result = on < now < off
-        return result
+        return on < now < off
 
     def set_actor_on(self):
         if self.is_time_to_turn_on():

@@ -1,8 +1,8 @@
 from datetime import datetime
 from unittest import TestCase, mock
 
-from Entities.Actor import Actor
-from Services.ActorService import ActorOnStateService, ActorOffStateService
+from Module.Actors.Actor import Actor
+from Module.Actors.ActorState import ActorOnState, ActorOffState
 
 
 class TestActorService(TestCase):
@@ -14,36 +14,36 @@ class TestActorService(TestCase):
 
     def test_set_actor_from_off_on(self) -> None:
         with mock.patch.object(Actor, 'is_time_to_turn_on', return_value=True):
-            service = ActorOffStateService(self._actor)
+            service = ActorOffState(self._actor)
             service = service.handle()
-            self.assertIsInstance(service, ActorOnStateService)
+            self.assertIsInstance(service, ActorOnState)
 
     def test_set_actor_from_off_to_off(self) -> None:
         with mock.patch.object(Actor, 'is_time_to_turn_on', return_value=False):
-            service = ActorOffStateService(self._actor)
+            service = ActorOffState(self._actor)
             service = service.handle()
-            self.assertIsInstance(service, ActorOffStateService)
+            self.assertIsInstance(service, ActorOffState)
 
     def test_set_actor_from_on_to_off(self) -> None:
         with mock.patch.object(Actor, 'is_time_to_turn_on', return_value=False):
-            service = ActorOnStateService(self._actor)
+            service = ActorOnState(self._actor)
             service = service.handle()
-            self.assertIsInstance(service, ActorOffStateService)
+            self.assertIsInstance(service, ActorOffState)
 
     def test_set_actor_from_on_to_on(self) -> None:
         with mock.patch.object(Actor, 'is_time_to_turn_on', return_value=True):
-            service = ActorOnStateService(self._actor)
+            service = ActorOnState(self._actor)
             service = service.handle()
-            self.assertIsInstance(service, ActorOnStateService)
+            self.assertIsInstance(service, ActorOnState)
 
     def test_set_actor_some_changes(self) -> None:
         with mock.patch.object(Actor, 'is_time_to_turn_on', return_value=False):
-            service = ActorOffStateService(self._actor)
+            service = ActorOffState(self._actor)
             service = service.handle()
-            self.assertIsInstance(service, ActorOffStateService)
+            self.assertIsInstance(service, ActorOffState)
         with mock.patch.object(Actor, 'is_time_to_turn_on', return_value=True):
             service = service.handle()
-            self.assertIsInstance(service, ActorOnStateService)
+            self.assertIsInstance(service, ActorOnState)
         with mock.patch.object(Actor, 'is_time_to_turn_on', return_value=False):
             service = service.handle()
-            self.assertIsInstance(service, ActorOffStateService)
+            self.assertIsInstance(service, ActorOffState)

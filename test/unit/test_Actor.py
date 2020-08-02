@@ -3,7 +3,7 @@ from unittest import TestCase
 
 from freezegun import freeze_time
 
-from Entities.Actor import Actor
+from Module.Actors.Actor import Actor
 
 
 class TestActor(TestCase):

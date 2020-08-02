@@ -3,7 +3,7 @@ import csv
 import os
 from unittest import TestCase
 
-from Entities.MeasureResult import MeasureResult
+from Module.Temperature.MeasureResult import MeasureResult
 from Repository.CsvDataRepository import CsvDataRepository
 
 

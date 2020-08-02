@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from Entities.MeasureResult import MeasureResult
+from Module.Temperature.MeasureResult import MeasureResult
 
 
 class TemperatureSensor:

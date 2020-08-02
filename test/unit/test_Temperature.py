@@ -2,8 +2,8 @@
 
 from unittest import TestCase, mock
 
-from Entities.MeasureResult import MeasureResult
-from Entities.TemperatureSensor import TemperatureSensor
+from Module.Temperature.MeasureResult import MeasureResult
+from Module.Temperature.TemperatureSensor import TemperatureSensor
 
 
 class TestTemperature(TestCase):

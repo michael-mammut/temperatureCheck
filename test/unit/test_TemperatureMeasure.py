@@ -3,8 +3,8 @@
 from datetime import datetime
 from unittest import TestCase, mock
 
-from Entities.TemperatureSensor import TemperatureSensor
-from Entities.MeasureResult import MeasureResult
+from Module.Temperature.TemperatureSensor import TemperatureSensor
+from Module.Temperature.MeasureResult import MeasureResult
 
 
 class test_TemperatureMeasure(TestCase):
