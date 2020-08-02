@@ -6,6 +6,6 @@ from Module.Actors.ActorState import ActorOffState
 from Module.Actors.actor_settings import ACTOR_SETTINGS
 
 for cycle in ACTOR_SETTINGS:
-    _actor = Actor(cycle.GPIO, cycle.ON, cycle.OFF)
+    _actor = Actor(cycle.get("GPIO"), cycle.get("ON"), cycle.get("OFF"))
     _actorService = ActorOffState(_actor)
     _actorService.handle()
