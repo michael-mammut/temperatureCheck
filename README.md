@@ -18,6 +18,7 @@ v1.0.0
 * Add your Token of Pushbullen in `SETTINGS.tokens.py`
 * Add your Sensor-IDs in `SETTINGS.temperature_settings.py`
 * Adjust the temperature limits in `SETTINGS.temperature_settings.py`
+* Install the used dependecies of the `reqirements.txt`
 
 #### This is just a little project to fool around and spend time to escape the world and improve my skills in Python.
 
