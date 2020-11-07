@@ -18,9 +18,17 @@ class NotificationService:
         self._message = "Wassertemp. liegt bei: " + str(self._measureResult.value) + "°C. Raumtemperatur bei " + str(
             self._measureResult.ambient) + "°C"
 
+    # Implementaion to send a message
+    def notify(self):
+        pass
+
     def get_notification_service(self):
         if self._type is NOTIFICATIONTYPE.get('MOBILE'):
             return MobileNotificationService(self._measureResult)
+
+        if self._type is NOTIFICATIONTYPE.get('TELEGRAM'):
+            from Services.Telegram import Telegram
+            return Telegram(self._measureResult)
 
         raise TypeError('Notificationtype does not exists')
 
@@ -40,8 +48,6 @@ class NotificationService:
         else:
             return "INFORMATION"
 
-    def notify(self):
-        pass
 
 class MobileNotificationService(NotificationService):
 

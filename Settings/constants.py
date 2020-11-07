@@ -2,5 +2,6 @@
 
 NOTIFICATIONTYPE = {
     'MOBILE': 0,
-    'EMAIL': 1
+    'EMAIL': 1,
+    'TELEGRAM': 2
 }

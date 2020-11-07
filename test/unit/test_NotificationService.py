@@ -11,17 +11,15 @@ class TestNotificationService(TestCase):
     def setUp(self):
         self.__AMBIENT = 30
         self.__measureResult = MeasureResult(10, self.__AMBIENT)
-        self.__typeMobile = NOTIFICATIONTYPE.get('MOBILE')
-
+        self.__typeMobile = NOTIFICATIONTYPE.get('TELEGRAM')
 
     def test_get_message(self):
         nr = MobileNotificationService(self.__measureResult)
         self.assertEqual("Wassertemp. liegt bei: 10°C. Raumtemperatur bei 30°C", nr.get_message())
 
     def test_get_notification_by_type(self):
-
         self.assertIsInstance(NotificationService(self.__typeMobile, self.__measureResult).get_notification_service(),
-                              MobileNotificationService)
+                              NotificationService)
 
     def test_get_notification_by_type_fail(self):
         dummy_type = -1
@@ -47,3 +45,9 @@ class TestNotificationService(TestCase):
         rm = MeasureResult(TEMPERATURE_LIMITS.get('ALERT'), self.__AMBIENT)
         n = NotificationService(self.__typeMobile, rm).get_notification_service()
         self.assertEqual('ACHTUNG! ZU WARME TEMPERATUR', n.get_title())
+
+    # MANUAL TESTING ONLY
+    # def test_runNotification(self):
+    #     rm = MeasureResult(TEMPERATURE_LIMITS.get('ALERT'), -100)
+    #     n = NotificationService(self.__typeMobile, rm).get_notification_service()
+    #     n.notify()

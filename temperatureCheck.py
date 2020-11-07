@@ -13,6 +13,6 @@ measurer_result = temperatureSensor.get_temperature_in_celsius()
 data_repo = CsvDataRepository(TEMPERATURE_DATA_FILE, ['value', 'ambient', 'created_at'])
 data_repo.add(measurer_result)
 
-notification_service = NotificationService(NOTIFICATIONTYPE.get('MOBILE'), measurer_result)
+notification_service = NotificationService(NOTIFICATIONTYPE.get('TELEGRAM'), measurer_result)
 mobile = notification_service.get_notification_service()
 mobile.notify()
