@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-NOTIFICATIONTYPE = {
-    'MOBILE': 0,
-    'EMAIL': 1,
-    'TELEGRAM': 2
-}
+PUSHBULLET = 'PUSHBULLET'
+EMAIL = 'EMAIL'
+TELEGRAM = 'TELEGRAM'
+

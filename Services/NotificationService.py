@@ -2,35 +2,25 @@
 from pushbullet import PushBullet
 
 from Module.Temperature.MeasureResult import MeasureResult
-from Settings.constants import NOTIFICATIONTYPE
-from Settings.tokens import PUSHBULLETTOKEN
+from Settings.constants import *
 from Module.Temperature.temperature_settings import TEMPERATURE_LIMITS
 
 
 class NotificationService:
-    def __init__(self, notification_type, measure_result):
-        if notification_type is None or not isinstance(measure_result,
-                                                       MeasureResult) or measure_result.value is None or measure_result.ambient is None:
-            raise TypeError('None is not allowed')
-        self._type = notification_type
+
+    def __init__(self, measure_result):
+        self.setNotificationData(measure_result)
+
+    def setNotificationData(self, measure_result):
         self._measureResult = measure_result
         self._title = self._get_notification_title()
         self._message = "Wassertemp. liegt bei: " + str(self._measureResult.value) + "°C. Raumtemperatur bei " + str(
             self._measureResult.ambient) + "°C"
+        return self
 
     # Implementaion to send a message
     def notify(self):
         pass
-
-    def get_notification_service(self):
-        if self._type is NOTIFICATIONTYPE.get('MOBILE'):
-            return MobileNotificationService(self._measureResult)
-
-        if self._type is NOTIFICATIONTYPE.get('TELEGRAM'):
-            from Services.Telegram import Telegram
-            return Telegram(self._measureResult)
-
-        raise TypeError('Notificationtype does not exists')
 
     def get_message(self):
         return self._message
@@ -44,16 +34,19 @@ class NotificationService:
         elif TEMPERATURE_LIMITS["WARNING"] <= self._measureResult.value < TEMPERATURE_LIMITS["ALERT"]:
             return "ACHTUNG! WARME TEMPERATUR"
         elif self._measureResult.value >= TEMPERATURE_LIMITS["ALERT"]:
-            return  "ACHTUNG! ZU WARME TEMPERATUR"
+            return "ACHTUNG! ZU WARME TEMPERATUR"
         else:
             return "INFORMATION"
 
 
-class MobileNotificationService(NotificationService):
+class NotificationServiceFactory():
+    def getNotificationService(self, type, measure_result):
+        if type is PUSHBULLET:
+            from Services.Pushbullet import Pushbullet
+            return Pushbullet(measure_result)
 
-    def __init__(self, measure_result):
-        super().__init__(NOTIFICATIONTYPE.get('MOBILE'), measure_result)
+        if type is TELEGRAM:
+            from Services.Telegram import Telegram
+            return Telegram(measure_result)
 
-    def notify(self):
-        pb = PushBullet(PUSHBULLETTOKEN)
-        pb.push_note(self._title, self._message)
+        raise TypeError('Notificationtype does not exists')
