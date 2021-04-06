@@ -1,10 +1,10 @@
 from unittest import TestCase
 
 from Module.Temperature.MeasureResult import MeasureResult
-from Services.NotificationService import  NotificationService, NotificationServiceFactory
+from Module.Temperature.temperature_settings import TEMPERATURE_LIMITS
+from Services.NotificationService import NotificationService, NotificationServiceFactory
 from Services.Telegram import Telegram
 from Settings.constants import TELEGRAM
-from Module.Temperature.temperature_settings import TEMPERATURE_LIMITS
 
 
 class TestNotificationService(TestCase):
@@ -47,8 +47,3 @@ class TestNotificationService(TestCase):
         n = NotificationServiceFactory().getNotificationService(self.__typeMobile, rm)
         self.assertEqual('ACHTUNG! ZU WARME TEMPERATUR', n.get_title())
 
-    # MANUAL TESTING ONLY
-    # def test_runNotification(self):
-    #     rm = MeasureResult(TEMPERATURE_LIMITS.get('ALERT'), -100)
-    #     n = NotificationServiceFactory().getNotificationService(self.__typeMobile, rm)
-    #     n.notify()

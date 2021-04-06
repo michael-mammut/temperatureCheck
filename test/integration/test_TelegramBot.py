@@ -1,6 +1,10 @@
 import unittest
+
+from Module.Temperature.MeasureResult import MeasureResult
+from Module.Temperature.temperature_settings import TEMPERATURE_LIMITS
+from Services.NotificationService import NotificationServiceFactory
 from Settings.enviroment import ENVIROMENT
-from Settings.constants import PRODUCTION
+from Settings.constants import PRODUCTION, TELEGRAM
 from Services.Telegram import Telegram
 
 
@@ -19,6 +23,18 @@ class MyTestCase(unittest.TestCase):
     def test_sendImage(self):
         result = Telegram.sendImage(self,'test-image.jpg', 'Sendet test image')
         self.assertTrue(result['ok'])
+
+    @unittest.skipIf(ENVIROMENT == PRODUCTION, 'We do not run this test in production enviroment')
+    def test_sendMessage(self):
+        result = Telegram.notify(self)
+        self.assertTrue(result['ok'])
+
+    # MANUAL TESTING ONLY
+    @unittest.skipIf(ENVIROMENT == PRODUCTION, 'We do not run this test in production enviroment')
+    def test_runNotification(self):
+        rm = MeasureResult(TEMPERATURE_LIMITS.get('ALERT'), -100)
+        n = NotificationServiceFactory().getNotificationService(TELEGRAM, rm)
+        n.notify()
 
 if __name__ == '__main__':
     unittest.main()

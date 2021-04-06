@@ -12,12 +12,14 @@ class Telegram(NotificationService):
         super().__init__(measure_result)
 
     def notify(self):
-        messageCode = urllib.parse.quote_plus(self.get_message())
-        url = "/bot" + BOT_TOKEN + "/sendMessage?chat_id=" + GROUP_ID + "&text=" + messageCode
+        url = f'https://api.telegram.org/bot{BOT_TOKEN}/sendMessage?'
+        data = {
+            'chat_id': f'-{GROUP_ID}',
+            'text': self.get_message()
+        }
+        response = requests.post(url=url, data=data).json()
+        return response
 
-        conn = http.client.HTTPSConnection('api.telegram.org')
-        conn.request('GET', url)
-        conn.getresponse()
 
     # return the last message of the bot, not a group
     def readDataFromBot(self):
