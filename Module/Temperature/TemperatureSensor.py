@@ -29,7 +29,7 @@ class TemperatureSensor:
         return MeasureResult(water, reference_sensor)
 
     def _get_temperature_in_celsius_by_sensor(self, sensor_id):
-        from w1thermsensor import W1ThermSensor
+        from w1thermsensor import W1ThermSensor, Sensor, Unit
 
-        sensor = W1ThermSensor(W1ThermSensor.THERM_SENSOR_DS18B20, sensor_id)
-        return sensor.get_temperature(W1ThermSensor.DEGREES_C)
+        sensor = W1ThermSensor(Sensor.DS18S20, sensor_id)
+        return sensor.get_temperature(Unit.DEGREES_C)
